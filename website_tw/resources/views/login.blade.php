@@ -28,6 +28,7 @@
         </div> 
     </div>
 
+
     <div class="row mb-3 g-3"> <!-- terminos y condiciones -->
         <div class="form-check">
             <input class="form-check-input" value="" id="condiciones" name="condiciones" type="checkbox">

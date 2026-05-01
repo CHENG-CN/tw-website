@@ -2,35 +2,20 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\GestionIncidencias;
 
 use Illuminate\Http\Request;
 
 
 Route::get('/', function () {
-
     return view('welcome');
 })->name('home');
 
-Route::get('/mis_incidencias', function(Request $request) {
-    
-    /* si no está el usuario registrado, entonces lo redirige a la página de login */
-    if (!$request->session()->has('user')){
-        return redirect()->route('login');
-    }
+Route::get('/mis_incidencias',  [GestionIncidencias::class, 'listarMisIncidencias'])->name('incidencias_reportadas');
 
-    $nombreUsuario =$request->session()->get('user');
+Route::get('/list/{id}', [GestionIncidencias::class, 'estadoIncidencia'])->name('incidencias.detalle');
 
-    $todasLasIncidencias = config('incidencias_reportadas');
-
-    $misIncidencias = $todasLasIncidencias[$nombreUsuario];
-
-    return view('mis_incidencias', compact('misIncidencias'));
-
-})->name('incidencias_reportadas');
-
-Route::get('/lista', function() {
-    return view('mis_incidencias');
-})->name('lista_incidencias');
+Route::get('/list', [GestionIncidencias::class, 'listarTodasIncidencias'])->name('lista_incidencias');
 
 Route::get('/login', function(Request $request) {
     // Para borrar los cookies, para test

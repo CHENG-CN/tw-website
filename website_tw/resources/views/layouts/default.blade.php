@@ -11,7 +11,7 @@
 
 <body>
     <header>
-        <h1 class="text-center my-3">  {{ config('app.name') }}</h1>
+        <h1 class="text-center my-3">  @yield('titulo_pagina', config('app.name'))</h1>
         <nav class="navbar navbar-expand-lg text-primary-emphasis bg-primary-subtle">
             <div class="container-fluid">
 

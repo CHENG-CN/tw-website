@@ -14,8 +14,9 @@ class AuthController extends Controller
         foreach ($usuarios as $user) {
             
             if ($user['email'] === $request->email) {
-                // Falta comprobar contreseña, daba error
+                // Falta comprobar contreseña
                 $request->session()->put('user', $user['nombre']);
+                $request->session()->put('administrador', $user['administrador']);
                 return redirect()->route('home');
             }
         }

@@ -3,17 +3,23 @@
 return [
     /* Cada usuario tendrá unas incidencias asociadas */
     'admin' => [
-        ['titulo' => "Baches en las carreteras",
+        [ 'id' => '1',
+        'titulo' => "Baches en las carreteras",
         'fecha' => '1/5/2026',
+        'reportador' => 'admin',
         'detalle' => 'Hay unos baches en el suelo',
         'ubicacion' => 'C/Ronda n100 ', 
-        'fotografica' => 'ruta_fotografia'],
+        'estado' => "resuelta",
+        'foto' => 'storage/incidencias/baches.jpeg'],
     ],
     'pepito' => [
-        ['titulo' => "Semaforos rotos",
+        [ 'id' => '2',
+        'titulo' => "Semaforos rotos",
         'fecha' => '1/5/2026',
+        'reportador' => 'Pepito',
         'detalle' => 'Semaforos rotos',
         'ubicacion' => 'C/Ronda n100 ', 
-        'fotografica' => 'ruta_fotografia'],
+        'estado' => "pendiente",
+        'foto' => 'storage/incidencias/semaforos.jpeg'],
     ]
 ];
