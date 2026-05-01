@@ -1,5 +1,5 @@
 
-@extends('layouts.app')
+@extends('layouts.default')
 @section('content')
     <article class="border border-dark bg-body-tertiary my-3 p-3 rounded">    
 
