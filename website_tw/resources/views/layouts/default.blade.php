@@ -25,7 +25,7 @@
 
                         @foreach(config('paginas.menu') as $ruta => $nombre)
                             <li class='nav-item'>
-                                <a class="nav-link  {{ request()->routeIs($ruta) ? 'active' : '' }} " href="{{ $ruta }}"> {{ $nombre }} </a>
+                                <a class="nav-link  {{ request()->routeIs($ruta) ? 'active' : '' }} " href="{{ route($ruta) }}"> {{ $nombre }} </a>
                             </li>
                         @endforeach
                     </ul>
@@ -40,6 +40,8 @@
 
     <footer class="p-2 text-info-emphasis bg-info-subtle">
         <p>&copy; 2026 Grupo 6 TW. Todos los derechos reservados. </p>
-</footer>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
