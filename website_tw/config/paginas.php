@@ -6,7 +6,7 @@ return [
     'menu' => [
         'home' => "Página principal",
         'lista_incidencias' => 'Todas las incidencias',
-        'incidencias_reportadas' => 'Mis incidencias',
+        'mis_incidencias' => 'Mis incidencias',
         'login' => 'login/logout',  // Cambiarlo más adelante
     ]
 ];
