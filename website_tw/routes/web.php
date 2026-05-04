@@ -23,5 +23,15 @@ Route::get('/login', function(Request $request) {
     return view('login');
 })->name('login');
 
+Route::get('/perfil', function () {
+    return view('perfil'); 
+})->name('perfil');;
+
+Route::get('/admin/validar', function () {
+    return view('admin-validar'); 
+});
+
+Route::get('/logout', [App\Http\Controllers\AuthController::class, 'logout'])->name('logout');
+
 /* Se llama al controlador  AuthController y se llama su método login */
 Route::post('/login', [AuthController::class, 'login'])->name('login.post');

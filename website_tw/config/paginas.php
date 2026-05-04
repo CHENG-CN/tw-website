@@ -7,6 +7,7 @@ return [
         'home' => "Página principal",
         'lista_incidencias' => 'Todas las incidencias',
         'mis_incidencias' => 'Mis incidencias',
+        'perfil' => 'Mi perfil',
         'login' => 'login/logout',  // Cambiarlo más adelante
     ]
 ];
