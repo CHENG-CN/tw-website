@@ -31,6 +31,18 @@ Route::get('/admin/validar', function () {
     return view('admin-validar'); 
 });
 
+Route::get('/formulario_contacto', function () {
+    return view('formulario_contacto');
+})->name('formulario_contacto');
+
+Route::post('/contacto', [ContactoController::class, 'enviar'])->name('contacto.post');
+
+Route::get('/formulario_incidencia', function () {
+    return view('formulario_incidencia');
+})->name('formulario_incidencia');
+
+Route::post('/incidencias', [GestionIncidencias::class, 'reportar_incidencia'])->name('incidencias.post');
+
 Route::get('/logout', [App\Http\Controllers\AuthController::class, 'logout'])->name('logout');
 
 /* Se llama al controlador  AuthController y se llama su método login */

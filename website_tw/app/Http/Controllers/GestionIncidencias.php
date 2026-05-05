@@ -53,4 +53,16 @@ class GestionIncidencias extends Controller
     {
         return redirect()-route('login');
     }
+
+    public function reportar_incidencia(Request $request)
+    {
+        $request->validate([
+            'ubicacion' => 'required',
+            'fecha' => 'required|date', //se puede intentar usar el tipo de dato date para validar formato
+            'descripcion' => 'required',
+            'fotografía' => 'required|url', // hay que investigar que tipo de formatos admitir 
+        ]);
+
+        return redirect()->route('mis_incidencias')->with('success', 'Incidencia creada correctamente');
+    }
 }
