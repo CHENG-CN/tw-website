@@ -49,9 +49,27 @@ class GestionIncidencias extends Controller
         return view('dashboard_incidencias', compact('todasIncidencias'));
     }
 
+    public function listarIncidenciasValidadas(Request $request)
+    {
+        $todas = collect(config('incidencias_reportadas'))->collapse();
+
+        $validadas = $todas->filter(function ($i) {
+            return isset($i['estado']) && !empty(trim($i['estado']));
+        });
+
+        return view('gestionar_estado', ['incidenciasValidadas' => $validadas]);
+    }
+
     public function listarIncidenciasPorValidar(Request $request)
     {
-        return redirect()-route('login');
+        $todas = collect(config('incidencias_reportadas'))->collapse();
+
+        $nuevas = $todas->filter(function ($i) {
+            // Solo las que NO tienen la clave o están vacías
+            return !isset($i['estado']) || empty(trim($i['estado']));
+        });
+
+        return view('validar_incidencias', ['incidenciasPendientes' => $nuevas]);
     }
 
     public function reportar_incidencia(Request $request)
@@ -65,4 +83,5 @@ class GestionIncidencias extends Controller
 
         return redirect()->route('mis_incidencias')->with('success', 'Incidencia creada correctamente');
     }
+    
 }

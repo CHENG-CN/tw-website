@@ -4,13 +4,13 @@ return [
         [
             'email' => 'admin@test.com',  /* Falta meter campo contraseña */
             'nombre' => 'admin',
-            'administrador' => 'true',
+            'administrador' => true,
         ],
         
         [
             'email' => 'pepito@test.com',
             'nombre' => 'pepito',
-            'administrador' => 'false',
+            'administrador' => false,
         ]
     ]
 ];

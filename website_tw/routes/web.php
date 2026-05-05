@@ -11,7 +11,7 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::get('/mis_incidencias',  [GestionIncidencias::class, 'listarMisIncidencias'])->name('mis_incidencias');
+//Route::get('/mis_incidencias',  [GestionIncidencias::class, 'listarMisIncidencias'])->name('mis_incidencias');
 
 Route::get('/list/{id}', [GestionIncidencias::class, 'estadoIncidencia'])->name('incidencias.detalle');
 
@@ -37,9 +37,9 @@ Route::get('/formulario_contacto', function () {
 
 Route::post('/contacto', [ContactoController::class, 'enviar'])->name('contacto.post');
 
-Route::get('/formulario_incidencia', function () {
-    return view('formulario_incidencia');
-})->name('formulario_incidencia');
+//Route::get('/formulario_incidencia', function () {
+ //   return view('formulario_incidencia');
+//})->name('formulario_incidencia');
 
 Route::post('/incidencias', [GestionIncidencias::class, 'reportar_incidencia'])->name('incidencias.post');
 
@@ -47,3 +47,20 @@ Route::get('/logout', [App\Http\Controllers\AuthController::class, 'logout'])->n
 
 /* Se llama al controlador  AuthController y se llama su método login */
 Route::post('/login', [AuthController::class, 'login'])->name('login.post');
+
+
+Route::prefix('perfil')->group(function () {
+
+    Route::get('/formulario_incidencia', function () {
+        return view('formulario_incidencia');
+    })->name('formulario_incidencia');
+
+    Route::get('/mis_incidencias', [GestionIncidencias::class, 'listarMisIncidencias'])
+        ->name('mis_incidencias');
+
+    Route::get('/validar', [GestionIncidencias::class, 'listarIncidenciasPorValidar'])
+       ->name('validar_incidencias');
+    
+    Route::get('/estado_incidencias', [GestionIncidencias::class, 'listarIncidenciasValidadas'])
+        ->name('estado_incidencias');
+});

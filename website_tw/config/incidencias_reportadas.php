@@ -11,7 +11,19 @@ return [
         'ubicacion' => 'C/Ronda n100 ', 
         'estado' => "resuelta",
         'foto' => 'storage/incidencias/baches.jpeg'],
+
+        [
+            'id' => '3',
+            'titulo' => 'farolas rotas',
+            'fecha' => '4/5/2026',
+            'reportador' => 'admin',
+            'detalle' => 'farolas rotas en plaza españa',
+            'ubicacion' => 'plaza españa',
+            'estado' => null, //cambiarlo por sin validar
+            'foto' => 'storage/incidencias/bachfarolas.jpeg',
+        ],
     ],
+    
     'pepito' => [
         [ 'id' => '2',
         'titulo' => "Semaforos rotos",
@@ -21,5 +33,6 @@ return [
         'ubicacion' => 'C/Ronda n100 ', 
         'estado' => "pendiente",
         'foto' => 'storage/incidencias/semaforos.jpeg'],
-    ]
+    ],
+
 ];

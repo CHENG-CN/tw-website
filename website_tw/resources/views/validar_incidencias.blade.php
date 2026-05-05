@@ -1,29 +1,72 @@
-@extends('layouts.app')
+@extends('layouts.default')
 
 @section('content')
-<div class="container mx-auto p-6">
-    <h1 class="text-2xl font-bold mb-6 text-red-600">Panel de Validación (Admin)</h1>
-    
-    <div class="overflow-x-auto">
-        <table class="min-w-full bg-white border border-gray-200">
-            <thead>
-                <tr class="bg-gray-100">
-                    <th class="py-2 px-4 border-b">ID</th>
-                    <th class="py-2 px-4 border-b">Incidencia</th>
-                    <th class="py-2 px-4 border-b">Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="py-2 px-4 border-b">#001</td>
-                    <td class="py-2 px-4 border-b">Socavón en calle principal</td>
-                    <td class="py-2 px-4 border-b text-center">
-                        <button class="bg-green-500 text-white px-3 py-1 rounded">Validar</button>
-                        <button class="bg-red-500 text-white px-3 py-1 rounded">Rechazar</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="text-primary fw-bold mb-0">Validar Incidencias</h2>
+            <p class="text-muted">Validación de Incidencias.</p>
+        </div>
+        <span class="badge bg-primary rounded-pill px-3 py-2">
+            {{ $incidenciasPendientes->count() }} Pendientes
+        </span>
+    </div>
+
+    <div class="card shadow-sm border-0 rounded-4 overflow-hidden">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th class="ps-4">Incidencia</th>
+                            <th>Ubicación</th>
+                            <th>Fecha</th>
+                            <th>Ciudadano</th>
+                            <th class="text-end pe-4">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse($incidenciasPendientes as $incidencia)
+                            <tr>
+                                <td class="ps-4">
+                                    <div class="fw-bold text-dark">{{ $incidencia['titulo'] }}</div>
+                                    <small class="text-muted">{{ Str::limit($incidencia['detalle'], 40) }}</small>
+                                </td>
+                                <td>
+                                    <i class="bi bi-geo-alt text-danger me-1"></i>
+                                    {{ $incidencia['ubicacion'] }}
+                                </td>
+                                <td>{{ $incidencia['fecha'] }}</td>
+                                <td>
+                                    <span class="badge bg-secondary text-white">{{ $incidencia['reportador'] }}</span>
+                                </td>
+                                <td class="text-end pe-4">
+                                    <div class="btn-group">
+                                        <a href="{{ route('incidencias.detalle', $incidencia['id'])}}" class="btn btn-sm">
+                                            <i class="bi bi-eye"></i>
+                                        </a>
+                                        <button class="btn btn-success btn-sm ms-2 rounded-pill px-3">
+                                            Validar
+                                        </button>
+                                        <button class="btn btn-danger btn-sm ms-2 rounded-pill px-3">
+                                            Rechazar
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="5" class="text-center py-5">
+                                    <i class="bi bi-check2-circle display-1 text-success opacity-25"></i>
+                                    <h4 class="mt-3 text-muted">No hay incidencias por validar</h4>
+                                    <a href="{{ route('perfil') }}" class="btn btn-primary btn-sm mt-2">Volver al Perfil</a>
+                                </td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>
 @endsection
