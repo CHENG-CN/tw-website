@@ -54,7 +54,6 @@
                 @endif
             </div>
 
-            {{-- BOTÓN CERRAR SESIÓN ABAJO --}}
             <div class="mt-5 text-center">
                 <a href="{{ route('logout') }}" class="text-danger text-decoration-none fw-bold">
                     <i class="bi bi-box-arrow-right"></i> Cerrar Sesión

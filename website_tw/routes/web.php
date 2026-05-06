@@ -8,7 +8,13 @@ use Illuminate\Http\Request;
 
 
 Route::get('/', function () {
-    return view('welcome');
+    $todas = collect(config('incidencias_reportadas'))->collapse();
+
+    return view('welcome', [
+        'resueltas' => $todas->where('estado', 'solucionado')->count(),
+        'proceso'   => $todas->where('estado', 'pendiente' || 'en proceso')->count(),
+        'total'     => $todas->count()
+    ]);
 })->name('home');
 
 //Route::get('/mis_incidencias',  [GestionIncidencias::class, 'listarMisIncidencias'])->name('mis_incidencias');
