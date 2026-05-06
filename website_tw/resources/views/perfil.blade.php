@@ -8,8 +8,13 @@
 
         @if(session()->has('user'))
             <div class="mb-4">
-                <p class="mb-1 text-muted">Nombre de usuario</p>
-                <h5 class="fw-bold text-dark">{{ session('user') }}</h5>
+                <p class="mb-1 text-muted small">Nombre de usuario</p>
+                <h5 class="fw-bold text-dark mb-3">{{ session('user') }}</h5>
+                
+                <p class="mb-1 text-muted small">Correo electrónico</p>
+                <p class="text-dark">
+                    <i class="bi bi-envelope me-2 text-primary"></i>{{ session('email') }}
+                </p>
             </div>
 
             {{-- LISTA DE OPCIONES --}}
