@@ -44,8 +44,16 @@ class GestionIncidencias extends Controller
     }
 
     public function listarTodasIncidencias(){
+
+        // Usar directamente el de validar
+
+        $todas = collect(config('incidencias_reportadas'))->collapse();
+
+        $validadas = $todas->filter(function ($i) {
+            return isset($i['estado']) && !empty(trim($i['estado']));
+        });
         
-        $todasIncidencias = collect(config('incidencias_reportadas'))->collapse();
+        $todasIncidencias = $validadas;
 
         return view('dashboard_incidencias', compact('todasIncidencias'));
     }
