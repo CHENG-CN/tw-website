@@ -11,8 +11,8 @@ Route::get('/', function () {
     $todas = collect(config('incidencias_reportadas'))->collapse();
 
     return view('welcome', [
-        'resueltas' => $todas->where('estado', 'solucionado')->count(),
-        'proceso'   => $todas->where('estado', 'pendiente' || 'en proceso')->count(),
+        'resueltas' => $todas->where('estado', 'Solucionado')->count(),
+        'proceso'   => $todas->where('estado', 'Pendiente' || 'En proceso')->count(),
         'total'     => $todas->count()
     ]);
 })->name('home');

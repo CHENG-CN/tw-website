@@ -81,7 +81,7 @@
                 <i class="bi bi-person-lines-fill me-1"></i>Contacto
             </a>
 
-            <a href="https://drive.google.com/file/d/1OE5G6IFuXTV1SbJyWQsNF6EPxM8q_mZm/view?usp=sharing" target="_blank" class="text-decoration-none px-3">
+            <a href="https://drive.google.com/file/d/1wz0QRc1du3h-s8L-Uf3aN07noKcwuYSk/view?usp=sharing" target="_blank" class="text-decoration-none px-3">
                 <i class="bi bi-file-earmark-pdf me-1"></i>Informe del Proyecto
             </a>
         </div>
