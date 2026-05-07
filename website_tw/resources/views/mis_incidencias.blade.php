@@ -1,28 +1,77 @@
 @extends('layouts.default')
-@section('titulo_pagina',  "Incidencias de ".session('user'))
+@section('titulo_pagina', "Incidencias de " . session('user'))
 @section('content')
 
-<!-- /* Vamos a suponer que nos pasan la lista de  incidencias_reportadas asociadas al usuario */
-/* Solo se encargará de mostrarnos las incidencias -->
-<ul>
-    <!-- TODO: Crear controlador que lo pinte, así se puede reutilizar para la parte de listados y ver estados-->
-    @forelse($misIncidencias as $incidencia)
-        <li>
-            <strong>{{ $incidencia['titulo'] }}</strong> ({{ $incidencia['fecha'] }}) <span class="badge bg-info text-dark">
-                Estado: {{ $incidencia['estado'] }}
-            </span><br> 
-            
-            <small>{{ $incidencia['detalle'] }} - En: {{ $incidencia['ubicacion'] }}</small>
+<div class="container my-4">
+    <h2 class="mb-4">Mis incidencias</h2>
+    <div class="row g-4">
+        @forelse($misIncidencias as $incidencia)
+            <div class="col-12 col-md-6 col-lg-4">
+                <article class="border border-dark bg-body-tertiary p-3 rounded h-100 shadow-sm">
+                    <div class="d-flex justify-content-between align-items-start mb-2">
 
-            <div class="admin-actions">
-                <button class="btn btn-danger btn-sm"> Eliminar </button>
+                        <h5 class="mb-0">
+                            {{ $incidencia['titulo'] }}
+                        </h5>
+
+                        <span class="badge bg-info text-dark">
+                            {{ $incidencia['estado'] ?? 'Pendiente' }}
+                        </span>
+
+                    </div>
+
+                    {{-- Fecha --}}
+                    <p class="mb-1">
+                        <strong>Fecha:</strong> {{ $incidencia['fecha'] }}
+                    </p>
+
+                    {{-- Ubicación --}}
+                    <p class="mb-2">
+                        📍 {{ $incidencia['ubicacion'] }}
+                    </p>
+
+                    {{-- Descripción --}}
+                    <p class="small">
+                        {{ Str::limit($incidencia['detalle'], 100) }}
+                    </p>
+
+                    @if(isset($incidencia['foto']))
+                        <div class="text-center mb-2">
+                            <img 
+                                src="{{ asset($incidencia['foto']) }}"
+                                class="img-fluid rounded"
+                                style="max-height: 180px; object-fit: cover; width: 100%;"
+                            >
+                        </div>
+                    @endif
+
+                    {{-- Acciones --}}
+                    <div class="d-flex gap-2 mt-3">
+
+                        <a href="{{ route('incidencias.detalle', $incidencia['id']) }}"
+                           class="btn btn-outline-primary btn-sm w-100">
+                            Ver
+                        </a>
+
+                        <button class="btn btn-danger btn-sm w-100">
+                            Eliminar
+                        </button>
+
+                    </div>
+
+                </article>
+
             </div>
-            
-        </li>
-    @empty
-        <p>No tienes incidencias reportadas todavía.</p>
-    @endforelse
-</ul>
 
+        @empty
 
+            <p>No tienes incidencias reportadas todavía.</p>
+
+        @endforelse
+
+    </div>
+
+</div>
+
+@endsection
 @endsection

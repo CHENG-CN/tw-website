@@ -43,9 +43,9 @@ class GestionIncidencias extends Controller
         return view('estado_incidencia', ['incidencia' => $incidenciaEncontrada]);
     }
 
-    public function listarTodasIncidencias(Request $request)
-    {
-        $todasIncidencias = config('incidencias_reportadas');
+    public function listarTodasIncidencias(){
+        $todasIncidencias = collect(config('incidencias_reportadas'))->collapse();
+
         return view('dashboard_incidencias', compact('todasIncidencias'));
     }
 
@@ -76,11 +76,12 @@ class GestionIncidencias extends Controller
     {
         $request->validate([
             'ubicacion' => 'required',
-            'fecha' => 'required|date', //se puede intentar usar el tipo de dato date para validar formato
+            'fecha' => 'required|date', 
             'descripcion' => 'required',
-            'fotografía' => 'required|url', // hay que investigar que tipo de formatos admitir 
+            'fotografia' => 'required|image|mimes:jpeg,png,jpg,gif', 
         ]);
 
+        $path = $request->file('fotografia')->store('incidencias', 'public');
         return redirect()->route('mis_incidencias')->with('success', 'Incidencia creada correctamente');
     }
     

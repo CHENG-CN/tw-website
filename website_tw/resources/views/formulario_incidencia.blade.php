@@ -1,7 +1,7 @@
 @extends('layouts.default')
 @section('content')
 
-    <form method="POST" action="{{ route('incidencias.post') }}">
+    <form method="POST" action="{{ route('incidencias.post') }}" enctype="multipart/form-data">
     <div class="container">
 
         <div class="row mb-3">
@@ -36,9 +36,10 @@
             </div>
 
             <div class="form-floating col-12 col-md-6 ">
-                <input id="fotografia" name="fotografia" type="url"
+                <input id="fotografia" name="fotografia" type="file"
                     placeholder="https://webejemplo.com/imagen.jpg"
-                    class="form-control" required>
+                    class="form-control" 
+                    accept="image/*" required>
                 <label for="fotografia"> Fotografía de la incidencia: </label>
             </div>
         </div>
