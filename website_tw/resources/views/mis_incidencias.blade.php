@@ -15,7 +15,7 @@
                         </h5>
 
                         <span class="badge bg-info text-dark">
-                            {{ $incidencia['estado'] ?? 'Pendiente' }}
+                            {{ $incidencia['estado'] ?? "Por validar" }}
                         </span>
 
                     </div>
@@ -73,5 +73,4 @@
 
 </div>
 
-@endsection
 @endsection

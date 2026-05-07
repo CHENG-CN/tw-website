@@ -9,18 +9,22 @@ return [
         'reportador' => 'admin',
         'detalle' => 'Hay unos baches en el suelo',
         'ubicacion' => 'C/Ronda n100 ', 
-        'estado' => "resuelta",
-        'foto' => 'storage/incidencias/baches.jpeg'],
+        'estado' => "Pendiente",
+        'foto' => 'storage/incidencias/baches.jpeg',
+        'info_img' => "Baches",
+        ],
+        
 
         [
             'id' => '3',
-            'titulo' => 'farolas rotas',
+            'titulo' => 'Farolas rotas',
             'fecha' => '4/5/2026',
             'reportador' => 'admin',
-            'detalle' => 'farolas rotas en plaza españa',
-            'ubicacion' => 'plaza españa',
-            'estado' => null, //cambiarlo por sin validar
-            'foto' => 'storage/incidencias/bachfarolas.jpeg',
+            'detalle' => 'Farolas rotas en plaza españa',
+            'ubicacion' => 'Parque Almunia',
+            'estado' => "En proceso", //cambiarlo por sin validar
+            'foto' => 'storage/incidencias/farolas.jpeg',
+            'info_img' => "Farola",
         ],
     ],
     
@@ -31,8 +35,20 @@ return [
         'reportador' => 'Pepito',
         'detalle' => 'Semaforos rotos',
         'ubicacion' => 'C/Ronda n100 ', 
-        'estado' => "pendiente",
-        'foto' => 'storage/incidencias/semaforos.jpeg'],
+        'estado' => "Solucionado",
+        'foto' => 'storage/incidencias/semaforos.jpeg',
+        'info_img' => "Semaforos",],
+
+        [ 'id' => '4',
+        'titulo' => "Baches en carretera",
+        'fecha' => '1/5/2026',
+        'reportador' => 'Pepito',
+        'detalle' => 'Se han encontrado baches en el suelo',
+        'ubicacion' => 'Plaza de toros n20 ', 
+        #'estado' => "Sin validar",
+        'foto' => 'storage/incidencias/baches.jpeg',
+        'info_img' => "Descripción imagen",
+        ]
     ],
 
 ];

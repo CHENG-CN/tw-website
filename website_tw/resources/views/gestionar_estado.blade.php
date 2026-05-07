@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('content')
-{{-- Usamos container-fluid para que sea más ancho como pediste antes --}}
+
 <div class="container mt-5">
     <div class="card shadow-lg border-0 rounded-4 p-4">
         
@@ -44,15 +44,17 @@
                             </td>
                             <td class="text-end pe-4">
                                 <div class="d-flex align-items-center justify-content-end gap-2">
+                                    
                                     {{-- Selector de Estado según el Guion --}}
+
                                     <select class="form-select form-select-sm rounded-pill border-primary" style="width: 150px;">
-                                        <option value="pendiente" {{ ($incidencia['estado'] ?? '') == 'pendiente' ? 'selected' : '' }}>
+                                        <option value="pendiente" {{ ($incidencia['estado'] ?? '') == 'Pendiente' ? 'selected' : '' }}>
                                             🟠 Pendiente
                                         </option>
-                                        <option value="en proceso" {{ ($incidencia['estado'] ?? '') == 'en proceso' ? 'selected' : '' }}>
+                                        <option value="en proceso" {{ ($incidencia['estado'] ?? '') == 'En proceso' ? 'selected' : '' }}>
                                             🔵 En proceso
                                         </option>
-                                        <option value="solucionado" {{ ($incidencia['estado'] ?? '') == 'solucionado' ? 'selected' : '' }}>
+                                        <option value="solucionado" {{ ($incidencia['estado'] ?? '') == 'Solucionado' ? 'selected' : '' }}>
                                             🟢 Solucionado
                                         </option>
                                     </select>

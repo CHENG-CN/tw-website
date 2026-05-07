@@ -4,7 +4,7 @@
         <article class="border border-dark bg-body-tertiary p-3 rounded h-100 shadow-sm"> {{-- Cabecera --}} <div
                 class="d-flex justify-content-between align-items-end mb-2">
                 <h5 class="mb-0"> {{ $incidencia['titulo'] }} </h5> <span class="badge bg-info text-dark">
-                    {{ $incidencia['estado'] ?? 'Pendiente' }} </span>
+                    {{ $incidencia['estado'] ?? 'Por validar' }} </span>
             </div> {{-- Info --}} <p class="mb-1"> <strong>Fecha:</strong> {{ $incidencia['fecha'] }} </p>
             <p class="mb-2"> <strong>Ubicación:</strong> {{ $incidencia['ubicacion'] }} </p> {{-- Imagen --}} <div
                 class="text-center mb-2"> <img

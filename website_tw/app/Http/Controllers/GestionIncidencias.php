@@ -44,6 +44,7 @@ class GestionIncidencias extends Controller
     }
 
     public function listarTodasIncidencias(){
+        
         $todasIncidencias = collect(config('incidencias_reportadas'))->collapse();
 
         return view('dashboard_incidencias', compact('todasIncidencias'));
