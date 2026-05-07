@@ -71,7 +71,7 @@
         
         <p class="small text-muted mb-4">
             Desarrollado por: 
-            <span class="text-white">Juan Luis Sequera</span>
+            <span class="text-white">Juan Luis Sánchez Sequera</span>
             <span class="text-white">Chengcheng Liu y</span>  
             <span class="text-white">Huaxiu Zhou</span>
         </p>
