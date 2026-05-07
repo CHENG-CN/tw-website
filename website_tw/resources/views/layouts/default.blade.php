@@ -65,12 +65,28 @@
     <main class="gh-main-content my-3 container" style="min-height: 65vh;">
         @yield('content')
     </main>
+<footer class="gh-footer py-5 text-center">
+    <div class="container">
+        <p class="mb-2">&copy; 2026 Grupo 6 TW. Todos los derechos reservados.</p>
+        
+        <p class="small text-muted mb-4">
+            Desarrollado por: 
+            <span class="text-white">Juan Luis Sequera</span>
+            <span class="text-white">Chengcheng Liu y</span>  
+            <span class="text-white">Huaxiu Zhou</span>
+        </p>
 
-    <footer class="gh-footer py-5 text-center">
-        <div class="container">
-            <p>&copy; 2026 Grupo 6 TW. Todos los derechos reservados. </p>
+        <div class="mt-3">
+            <a href="{{ route('formulario_contacto') }}" class="text-decoration-none px-3 border-end">
+                <i class="bi bi-person-lines-fill me-1"></i>Contacto
+            </a>
+
+            <a href="linkarchivo" target="_blank" class="text-decoration-none px-3">
+                <i class="bi bi-file-earmark-pdf me-1"></i>Informe del Proyecto
+            </a>
         </div>
-    </footer>
+    </div>
+</footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
