@@ -2,10 +2,6 @@
 @section('titulo_pagina', "Estado incidencia: ".$incidencia['titulo'])
 @section('content')
 
-<!-- /* Vamos a suponer que nos pasan la lista de  incidencias_reportadas asociadas al usuario */
-/* Solo se encargará de mostrarnos las incidencias -->
-
-
 <div class="card shadow-sm border-0 mb-4 overflow-hidden">
     <div class="row g-0">
         <div class="col-md-4">

@@ -12,7 +12,7 @@ Route::get('/', function () {
 
     return view('welcome', [
         'resueltas' => $todas->where('estado', 'Solucionado')->count(),
-        'proceso'   => $todas->where('estado', 'Pendiente' || 'En proceso')->count(),
+        'proceso'   => $todas->whereIn('estado', ['Pendiente','En proceso'])->count(),
         'total'     => $todas->count()
     ]);
 })->name('home');
