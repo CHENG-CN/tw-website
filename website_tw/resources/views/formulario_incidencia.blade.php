@@ -2,59 +2,65 @@
 @section('content')
 
     <form method="POST" action="{{ route('incidencias.post') }}" enctype="multipart/form-data">
-    <div class="container">
+        <div class="container">
 
-        <div class="row mb-3">
-            <h2> Reportar una incidencia </h2>
-        </div>
+            <div class="row mb-3">
+                <h2> Reportar una incidencia </h2>
+            </div>
 
-        <div class="row mb-3 g-3"> 
+            <div class="row mb-3 g-3">
 
-            <div class="form-floating col-12 col-md-6 ">
-                <input id="ubicacion" name="ubicacion" type="text" 
-                        placeholder="Ej. Calle Periodista Daniel Saucedo Aranda s/n. E-18071"
+                <div class="form-floating col-12 col-md-6">
+                    <input id="titulo" name="titulo" type="text" placeholder="Ej. Farola rota en la esquina"
                         class="form-control" required>
-                <label for="ubicacion"> Ubicación: </label>
+                    <label for="titulo" class="ms-2"> Título corto de la incidencia: </label>
+                </div>
+
+                <div class="form-floating col-12 col-md-6 ">
+                    <input id="ubicacion" name="ubicacion" type="text"
+                        placeholder="Ej. Calle Periodista Daniel Saucedo Aranda s/n. E-18071" class="form-control" required>
+                    <label for="ubicacion"> Ubicación: </label>
+                </div>
+
+                <div class="form-floating col-12 col-md-6 ">
+                    <input id="fecha" name="fecha" type="date" placeholder="dd/mm/yyyy" class="form-control" required>
+                    <label for="fecha"> Fecha: </label>
+                </div>
             </div>
 
-            <div class="form-floating col-12 col-md-6 ">
-                <input id="fecha" name="fecha" type="date"
-                        placeholder="dd/mm/yyyy"
+            <div class="row mb-3 g-3">
+
+                <div class="form-floating col-12 col-md-6 ">
+                    <textarea id="descripcion" name="descripcion" class="form-control"
+                        placeholder="Descripción de la incidencia..." style="height: 100px" required></textarea>
+                    <label for="descripcion"> Descripción: </label>
+                </div>
+
+                <div class="form-floating col-12 col-md-6 ">
+                    <input id="fotografia" name="fotografia" type="file" placeholder="https://webejemplo.com/imagen.jpg"
+                        class="form-control" accept="image/*" required>
+                    <label for="fotografia"> Fotografía de la incidencia: </label>
+                </div>
+
+                <div class="form-floating col-12 col-md-6 ">
+                    <input id="info_img" name="info_img" type="text" placeholder="Ej. Detalle del cristal roto de la farola"
                         class="form-control" required>
-                <label for="fecha"> Fecha: </label>
-            </div>
-        </div>
-
-        <div class="row mb-3 g-3">
-
-            <div class="form-floating col-12 col-md-6 ">
-                <textarea id="descripcion" name="descripcion" 
-                    class="form-control" 
-                    placeholder="Descripción de la incidencia..."
-                    style="height: 100px" required></textarea>
-                <label for="descripcion"> Descripción: </label>
+                    <label for="info_img" class="ms-2"> Describe brevemente lo que se ve en la foto (Accesibilidad):
+                    </label>
+                </div>
             </div>
 
-            <div class="form-floating col-12 col-md-6 ">
-                <input id="fotografia" name="fotografia" type="file"
-                    placeholder="https://webejemplo.com/imagen.jpg"
-                    class="form-control" 
-                    accept="image/*" required>
-                <label for="fotografia"> Fotografía de la incidencia: </label>
+            <div class="row mb-3 g-3"> <!-- terminos y condiciones -->
+                <div class="form-check">
+                    <input class="form-check-input" value="" id="condiciones" name="condiciones" type="checkbox">
+                    <label class="form-check-label" for="condiciones"> Aceptar términos y condiciones </label>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6">
+                <button type="submit" class="btn btn-primary w-100 w-md-auto">Enviar </button>
             </div>
         </div>
-
-        <div class="row mb-3 g-3"> <!-- terminos y condiciones -->
-            <div class="form-check">
-                <input class="form-check-input" value="" id="condiciones" name="condiciones" type="checkbox">
-                <label class="form-check-label" for="condiciones"> Aceptar términos y condiciones </label>
-            </div>
-        </div>
-
-        <div class="col-12 col-md-6">
-            <button type="submit" class="btn btn-primary w-100 w-md-auto">Enviar </button>
-        </div>
-    </div>
     </form>
 
 @endsection

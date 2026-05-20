@@ -99,23 +99,25 @@ class GestionIncidencias extends Controller
     public function reportar_incidencia(Request $request)
     {
         $request->validate([
+            'titulo' => 'required',
             'ubicacion' => 'required',
             'fecha' => 'required|date', 
             'descripcion' => 'required',
             'fotografia' => 'required|image|mimes:jpeg,png,jpg,gif', 
+            'info_img' => 'required',
         ]);
 
         $path = $request->file('fotografia')->store('incidencias', 'public');
 
         Incidencia::create([
-            'titulo' => $request->input('titulo') ?? 'Incidencia sin título',
-            'fecha' => $request->input('fecha'),
-            'user_id' => Auth::id(),
-            'detalle' => $request->input('descripcion'),
-            'ubicacion' => $request->input('ubicacion'),
+            'titulo' => $request->titulo,
+            'fecha' => $request->fecha,
+            'user_id' => auth()->id(),
+            'detalle' => $request->descripcion,
+            'ubicacion' => $request->ubicacion,
             'estado' => 'sin_validar', 
             'foto' => 'storage/' . $path,
-            'info_img' => $request->input('info_img') ?? '',
+            'info_img' => $request->info_img
         ]);
 
         return redirect()->route('mis_incidencias')->with('success', 'Incidencia creada correctamente');
