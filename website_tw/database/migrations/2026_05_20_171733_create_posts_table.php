@@ -14,9 +14,10 @@ return new class extends Migration
         Schema::create('incidencias', function (Blueprint $table) {
             $table->id();
 
-            $tabñe->titulo();
-            $table->date('fecha');
-            $table->string('reportador');
+            $table->string('titulo');
+            $table->date('fecha'); //Formato YYYY-MM-DD
+            // user_id, toma direcamente el id de la tabla user.
+            $table->foreignID('user_id')->constrained()->onDelete('cascade');
             $table->text('detalle');
             $table->string('ubicacion');
 
@@ -25,7 +26,7 @@ return new class extends Migration
             // Vamos a permitir que haya incidencias sin fotos?
             $table->string('foto')->nullable();
             $table->string('info_img')->nullable();
-            
+
             $table->timestamps();
         });
     }

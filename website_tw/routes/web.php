@@ -64,7 +64,7 @@ Route::prefix('perfil')->group(function () {
         return view('formulario_incidencia');
     })->name('formulario_incidencia');
 
-    Route::get('/mis_incidencias', [GestionIncidencias::class, 'listarMisIncidencias'])
+    Route::get('/mis_incidencias', [GestionIncidencias::class, 'listarMisIncidencias_bd'])
         ->name('mis_incidencias');
 
     Route::get('/validar', [GestionIncidencias::class, 'listarIncidenciasPorValidar'])

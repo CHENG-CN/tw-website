@@ -3,18 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Incidencia;
 
 class GestionIncidencias extends Controller
 {
-    public function listarMisIncidencias(Request $request)
+    public function listarMisIncidencias_bd(Request $request)
     {
-        if (!$request->session()->has('user')){
+        if (!Auth::check())
+        {
             return redirect()->route('login');
         }
-
-        $nombreUsuario =$request->session()->get('user');
-        $todasLasIncidencias = config('incidencias_reportadas');
-        $misIncidencias = $todasLasIncidencias[$nombreUsuario];
+        $usuario = Auth::user();
+        $misIncidencias = Incidencia::where('user_id', $usuario->id)->get();
 
         return view('mis_incidencias', compact('misIncidencias'));
     }
