@@ -5,6 +5,7 @@
         <h1 class="mb-4">Incidencias del municipio</h1>
 
         <div class="row g-4">
+            
             @forelse($todasIncidencias as $incidencia)
 
                 <div class="col-12 col-md-6 col-lg-4">
