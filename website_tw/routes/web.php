@@ -43,16 +43,19 @@ Route::get('/formulario_contacto', function () {
 
 Route::post('/contacto', [ContactoController::class, 'enviar'])->name('contacto.post');
 
-//Route::get('/formulario_incidencia', function () {
- //   return view('formulario_incidencia');
-//})->name('formulario_incidencia');
+
+Route::get('/formulario_registrar', function () {
+    return view('formulario_registro');
+})->name('formulario_registro');
+
+Route::post('/registrar', [AuthController::class, 'register'])->name('register.post');
 
 Route::post('/incidencias', [GestionIncidencias::class, 'reportar_incidencia'])->name('incidencias.post');
 
-Route::get('/logout', [App\Http\Controllers\AuthController::class, 'logout'])->name('logout');
+Route::get('/logout', [AuthController::class, 'logout_db'])->name('logout');
 
 /* Se llama al controlador  AuthController y se llama su método login */
-Route::post('/login', [AuthController::class, 'login'])->name('login.post');
+Route::post('/login', [AuthController::class, 'login_db'])->name('login.post');
 
 
 Route::prefix('perfil')->group(function () {

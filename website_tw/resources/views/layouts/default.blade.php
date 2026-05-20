@@ -43,9 +43,9 @@
                     </ul>
 
                     <div class="d-flex align-items-center">
-                        @if(session()->has('user'))
+                        @auth
                             <span class="navbar-text me-4 text-muted small">
-                                <i class="bi bi-person me-1"></i> Hola, <strong>{{ session('user') }}</strong>
+                                <i class="bi bi-person me-1"></i> Hola, <strong>{{ auth()->user()->name }}</strong>
                             </span>
                             <a href="{{ route('logout') }}" class="btn btn-gh-danger btn-sm">
                                 <i class="bi bi-box-arrow-right me-1"></i> Salir
@@ -54,7 +54,7 @@
                             <a href="{{ route('login') }}" class="btn btn-gh-primary btn-sm">
                                 Iniciar Sesión <i class="bi bi-arrow-right ms-1"></i>
                             </a>
-                        @endif
+                        @endauth
                     </div>
                 </div>
             </div>

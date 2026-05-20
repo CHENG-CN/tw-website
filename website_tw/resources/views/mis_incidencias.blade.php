@@ -1,5 +1,5 @@
 @extends('layouts.default')
-@section('titulo_pagina', "Incidencias de " . session('user'))
+@section('titulo_pagina', "Incidencias de " . auth()->user()->name)
 @section('content')
 
 <div class="container my-4">

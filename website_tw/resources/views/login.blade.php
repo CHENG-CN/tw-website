@@ -36,6 +36,12 @@
         </div>
     </div>
 
+    @if (session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+    @endif
+
     <div class="col-12 col-md-auto">
         <button type="submit" class="btn btn-primary w-100 w-md-auto">Enviar </button>
     </div>

@@ -4,16 +4,16 @@
 <div class="container mt-5">
     <div class="card shadow p-4 border-0 rounded-4">
         <h2 class="text-primary fw-bold">Mi Perfil</h2>
-        <hr>
 
-        @if(session()->has('user'))
+        <!-- Si está autentificado -->
+        @auth 
             <div class="mb-4">
                 <p class="mb-1 text-muted small">Nombre de usuario</p>
-                <h5 class="fw-bold text-dark mb-3">{{ session('user') }}</h5>
+                <h5 class="fw-bold text-dark mb-3">{{ auth()->user()->name }}</h5>
                 
                 <p class="mb-1 text-muted small">Correo electrónico</p>
                 <p class="text-dark">
-                    <i class="bi bi-envelope me-2 text-primary"></i>{{ session('email') }}
+                    <i class="bi bi-envelope me-2 text-primary"></i>{{ auth()->user()->email }}
                 </p>
             </div>
 
@@ -37,7 +37,7 @@
                 </a>
 
                 {{-- 3. Validar Incidencias (Solo para Admin) --}}
-                @if(session('administrador') == true)
+                @if(auth()->user()->es_admin == true)
                     <a href="{{ route('validar_incidencias')}}" class="list-group-item list-group-item-action d-flex align-items-center py-3">
                         <i class="bi bi-shield-check fs-4 text-warning me-3"></i>
                         <div>
@@ -65,7 +65,7 @@
                 No hay ninguna sesión activa.
             </div>
             <a href="{{ route('login') }}" class="btn btn-primary rounded-pill px-4">Ir al Login</a>
-        @endif
+        @endauth
     </div>
 </div>
 @endsection
