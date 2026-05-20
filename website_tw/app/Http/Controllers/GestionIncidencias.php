@@ -22,7 +22,8 @@ class GestionIncidencias extends Controller
 
     public function estadoIncidencia(Request $request, int $id)
     {
-        // Cargamos el archivo de configuración
+    /*    
+    // Cargamos el archivo de configuración
         $usuariosConIncidencias = config('incidencias_reportadas');
         $incidenciaEncontrada = null;
 
@@ -40,6 +41,8 @@ class GestionIncidencias extends Controller
         if (!$incidenciaEncontrada) {
             abort(404, 'Incidencia no existe');
         }
+    */
+        $incidenciaEncontrada = Incidencia::findOrFail($id);
 
         return view('estado_incidencia', ['incidencia' => $incidenciaEncontrada]);
     }
@@ -47,7 +50,7 @@ class GestionIncidencias extends Controller
     public function listarTodasIncidencias(){
 
         // Usar directamente el de validar
-
+        /*
         $todas = collect(config('incidencias_reportadas'))->collapse();
 
         $validadas = $todas->filter(function ($i) {
@@ -55,29 +58,40 @@ class GestionIncidencias extends Controller
         });
         
         $todasIncidencias = $validadas;
+        */
 
+        $todasIncidencias = Incidencia::where('estado', '!=', 'sin_validar')->get();
+        
         return view('dashboard_incidencias', compact('todasIncidencias'));
     }
 
     public function listarIncidenciasValidadas(Request $request)
     {
+        /*
         $todas = collect(config('incidencias_reportadas'))->collapse();
 
         $validadas = $todas->filter(function ($i) {
             return isset($i['estado']) && !empty(trim($i['estado']));
         });
+        */
+
+        $validadas = Incidencia::where('estado', '!=', 'sin_validar')->get();
 
         return view('gestionar_estado', ['incidenciasValidadas' => $validadas]);
     }
 
     public function listarIncidenciasPorValidar(Request $request)
     {
+        /*
         $todas = collect(config('incidencias_reportadas'))->collapse();
 
         $nuevas = $todas->filter(function ($i) {
             // Solo las que NO tienen la clave o están vacías
             return !isset($i['estado']) || empty(trim($i['estado']));
         });
+        */
+        
+        $nuevas = Incidencia::where('estado', 'sin_validar')->get();
 
         return view('validar_incidencias', ['incidenciasPendientes' => $nuevas]);
     }
@@ -92,6 +106,18 @@ class GestionIncidencias extends Controller
         ]);
 
         $path = $request->file('fotografia')->store('incidencias', 'public');
+
+        Incidencia::create([
+            'titulo' => $request->input('titulo') ?? 'Incidencia sin título',
+            'fecha' => $request->input('fecha'),
+            'user_id' => Auth::id(),
+            'detalle' => $request->input('descripcion'),
+            'ubicacion' => $request->input('ubicacion'),
+            'estado' => 'sin_validar', 
+            'foto' => 'storage/' . $path,
+            'info_img' => $request->input('info_img') ?? '',
+        ]);
+        
         return redirect()->route('mis_incidencias')->with('success', 'Incidencia creada correctamente');
     }
     
