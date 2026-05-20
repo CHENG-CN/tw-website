@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\GestionIncidencias;
+use App\Http\Controllers\ContactoController;
 
 use Illuminate\Http\Request;
 
@@ -73,3 +74,5 @@ Route::prefix('perfil')->group(function () {
     Route::get('/estado_incidencias', [GestionIncidencias::class, 'listarIncidenciasValidadas'])
         ->name('estado_incidencias');
 });
+
+Route::patch('/perfil/estado_incidencias/{id}', [GestionIncidencias::class, 'actualizarEstado'])->name('incidencias.actualizar_estado');

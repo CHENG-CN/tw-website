@@ -21,7 +21,7 @@
                                 @case('pendiente')
                                     <span class="badge bg-warning text-white text-upppercase">Pendiente</span>
                                     @break
-                                @case('en proceso')
+                                @case('en_proceso')
                                     <span class="badge bg-primary text-white text-uppercase">En proceso</span>
                                     @break
                                 @case('solucionado')

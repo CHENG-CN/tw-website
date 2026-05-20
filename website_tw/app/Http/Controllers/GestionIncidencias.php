@@ -117,8 +117,23 @@ class GestionIncidencias extends Controller
             'foto' => 'storage/' . $path,
             'info_img' => $request->input('info_img') ?? '',
         ]);
-        
+
         return redirect()->route('mis_incidencias')->with('success', 'Incidencia creada correctamente');
+    }
+
+    public function actualizarEstado(Request $request, int $id)
+    {
+        $request->validate([
+            'estado' => 'required|in:pendiente,en_proceso,solucionado'
+        ]);
+
+        $incidencia = Incidencia::findOrFail($id);
+
+        $incidencia->estado = $request->estado;
+
+        $incidencia->save();
+
+        return redirect()->route('estado_incidencias')->with('success', 'Estado de la incidencia actualizado correctamente');
     }
     
 }
