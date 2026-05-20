@@ -11,9 +11,12 @@
                 <h1 class="display-4 fw-bold">Gestión de Incidencias Granada</h1>
                 <p class="lead text-muted">Haz de tu ciudad un lugar mejor. Reporta desperfectos en la vía pública de forma rápida y sencilla.</p>
                 <div class="d-grid gap-3 d-sm-flex justify-content-sm-center mt-4">
+
+                    @isset()
                     <a href="{{ route('login') }}" class="btn btn-gh-primary btn-lg px-4">
                         <i class="bi bi-megaphone me-2"></i>Nueva Incidencia
                     </a>
+
                     <a href="{{ route('lista_incidencias') }}" class="btn btn-outline-dark btn-lg px-4">
                         <i class="bi bi-search me-2"></i>Ver todas
                     </a>
