@@ -15,7 +15,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
         if (incidencia.estado) {
             var estadoComprobar = incidencia.estado.toLowerCase().trim();
-            if (estadoComprobar === 'sin_validar' || estadoComprobar === 'rechazado') {
+            if (estadoComprobar === 'sin_validar') {
+                return;
+            }
+            if (estadoComprobar === 'rechazada') {
                 return;
             }
         } else {
