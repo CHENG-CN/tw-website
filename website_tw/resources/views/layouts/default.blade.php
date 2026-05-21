@@ -39,7 +39,7 @@
 
                         @foreach(config('paginas.menu') as $ruta => $nombre)
                             <li class='nav-item'>
-                                <a class="nav-link {{ request()->routeIs($ruta) ? 'active' : '' }} me-md-2" href="{{ route($ruta) }}"> 
+                                <a class="nav-link {{ request()->routeIs($ruta) ? 'active' : '' }} me-md-2 text-nowrap" href="{{ route($ruta) }}"> 
                                     {{ $nombre }} 
                                 </a>
                             </li>
@@ -55,7 +55,7 @@
                                 <i class="bi bi-box-arrow-right me-1"></i> Salir
                             </a>
                         @else
-                            <a href="{{ route('login') }}" class="btn btn-gh-primary btn-sm">
+                            <a href="{{ route('login') }}" class="btn btn-gh-primary btn-sm text-nowrap">
                                 Iniciar Sesión <i class="bi bi-arrow-right ms-1"></i>
                             </a>
                         @endauth

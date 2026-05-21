@@ -27,7 +27,7 @@
                         </p>
 
                         {{-- Ubicación --}}
-                        <p class="mb-2">
+                        <p class="mb-1">
                             📍{{ explode('|', $incidencia->ubicacion)[0] }}</p>
                         </p>
 
