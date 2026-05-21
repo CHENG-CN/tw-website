@@ -6,7 +6,7 @@
         
         <form action="{{ route('lista_incidencias') }}" method="GET" class="mb-4">
             <div class="row align-items-end">
-                <div class="col-md-4">
+                <div class="col-12 col-md-4">
                     <label for="estado" class="form-label fw-bold">Filtro: </label>
                     <select name="estado" id="estado" class="form-select" onchange="this.form.submit()">
                         <option value="">Cualquier estado</option>
