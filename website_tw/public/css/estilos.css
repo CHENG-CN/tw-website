@@ -114,3 +114,25 @@
         min-height: 420px;
         width: 100%;
     }
+
+    /* 🛠️ MODIFICADO: Botón de las 3 rayas sin borde negro en absoluto */
+    .navbar-toggler {
+        padding: 0.25rem 0.5rem !important; 
+        font-size: 0.85rem !important;      
+        border-radius: 6px !important;      
+        border: 1px solid rgba(0, 0, 0, 0.1) !important; /* Borde gris sutil base */
+    }
+
+    /* 🚫 FULMINAR la raya negra del navegador al hacer clic o dejarlo seleccionado */
+    .navbar-toggler:focus,
+    .navbar-toggler:active,
+    .navbar-toggler-icon:focus {
+        outline: none !important;
+        box-shadow: none !important;
+    }
+
+    /* Dimensiones de las tres líneas interiores */
+    .navbar-toggler-icon {
+        width: 1.25rem !important;
+        height: 1.25rem !important;
+    }
