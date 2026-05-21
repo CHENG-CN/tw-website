@@ -73,7 +73,6 @@ footer.gh-footer .text-muted {
     color: #a0c4ff !important;
 }
 
-/* Cabecera principal con imagen de fondo */
 .hero-granada {
     background-image: url('../storage/incidencias/alhambra.png');
     background-size: cover;
@@ -107,7 +106,7 @@ footer.gh-footer .text-muted {
     text-transform: uppercase !important;
     letter-spacing: 0.6px;
     font-weight: 700 !important;  
-} /* 👈 ¡AQUÍ ESTABA EL FALLO! Ya está cerrada correctamente */
+}
 
 /* Altura del mapa interactivo */
 #mapa-incidencias {
@@ -115,7 +114,6 @@ footer.gh-footer .text-muted {
     width: 100%;
 }
 
-/* Botón de las 3 rayas personalizado */
 .navbar-toggler {
     padding: 0.25rem 0.5rem !important; 
     font-size: 0.85rem !important;      
@@ -123,7 +121,6 @@ footer.gh-footer .text-muted {
     border: 1px solid rgba(0, 0, 0, 0.1) !important;
 }
 
-/* Quitar el contorno negro del navegador */
 .navbar-toggler:focus,
 .navbar-toggler:active,
 .navbar-toggler-icon:focus {
