@@ -48,10 +48,10 @@
 
                     <div class="d-flex align-items-center py-1">
                         @auth
-                            <span class="navbar-text me-4 text-muted small">
-                                <i class="bi bi-person me-1"></i> Hola, <strong>{{ auth()->user()->name }}</strong>
+                            <span class="navbar-text me-4 text-muted small text-nowrap">
+                                <i class="bi bi-person me-1 "></i> Hola, <strong>{{ auth()->user()->name }}</strong>
                             </span>
-                            <a href="{{ route('logout') }}" class="btn btn-gh-danger btn-sm">
+                            <a href="{{ route('logout') }}" class="btn btn-gh-danger btn-sm text-nowrap">
                                 <i class="bi bi-box-arrow-right me-1"></i> Salir
                             </a>
                         @else
