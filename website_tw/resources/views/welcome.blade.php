@@ -6,13 +6,13 @@
     <section class="text-center py-5 mb-5 rounded-4 shadow-sm border border-primary-subtle hero-granada">
         <div class="hero-overlay"></div>
 
-        <div class="row justify-content-center hero-content py-4">
+        <div class="row justify-content-center hero-content py-4 px-3 px-sm-4">
             <div class="col-md-8 text-white">
                 <i class="bi bi-geo-alt-fill text-danger display-4 mb-3"></i>
                 <h1 class="display-4 fw-bold text-white">Gestión de Incidencias Granada</h1>
                 <p class="lead text-white-50">Haz de tu ciudad un lugar mejor. Reporta desperfectos en la vía pública de forma rápida y sencilla.</p>
                 
-                <div class="d-grid gap-3 d-sm-flex justify-content-sm-center mt-4">
+                <div class="d-grid gap-3 d-sm-flex justify-content-sm-center mt-4 px-2">
                     @auth
                     <a href="{{ route('formulario_incidencia') }}" class="btn btn-gh-primary btn-lg px-4 shadow">
                         <i class="bi bi-megaphone me-2"></i>Nueva Incidencia

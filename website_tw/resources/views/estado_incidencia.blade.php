@@ -1,66 +1,80 @@
 @extends('layouts.default')
+@section('titulo_pagina', "Estado incidencia: ".$incidencia['titulo'])
 @section('content')
 
-    <form method="POST" action="{{ route('incidencias.post') }}" enctype="multipart/form-data">
-        <div class="container">
+<div class="card shadow-sm border-0 mb-4 overflow-hidden">
+    <div class="row g-0">
+        <div class="col-md-4">
+            <a href="#" data-bs-toggle="modal" data-bs-target="#imagenAmpliar" style="cursor: zoom-in;">
+                <img 
+                    src="{{ asset($incidencia['foto']) }}" 
+                    class="img-fluid h-100 w-100" 
+                    alt="{{ $incidencia['info_img'] ?? 'Imagen de incidencia' }}"
+                    style="object-fit: cover; min-height: 200px;"
+                >
+            </a>
+        </div>
 
-            <div class="row mb-3">
-                <h2> Reportar una incidencia </h2>
-            </div>
-
-            <div class="row mb-3 g-3">
-
-                <div class="form-floating col-12 col-md-6">
-                    <input id="titulo" name="titulo" type="text" placeholder="Ej. Farola rota en la esquina"
-                        class="form-control" required>
-                    <label for="titulo" class="ms-2"> Título corto de la incidencia: </label>
+        <div class="col-md-8">
+            <div class="card-body d-flex flex-column h-100">
+                <div class="d-flex justify-content-between align-items-start mb-2">
+                    <h5 class="card-title fw-bold mb-0">{{ $incidencia['titulo'] }}</h5>
+                    @switch(strtolower(($incidencia->estado ?? '')))
+                        @case('pendiente')
+                            <span class="badge bg-warning text-white text-upppercase">Pendiente</span>
+                            @break
+                        @case('en_proceso')
+                            <span class="badge bg-primary text-white text-uppercase">En proceso</span>
+                            @break
+                        @case('solucionado')
+                            <span class="badge bg-success text-white text-uppercase">Solucionado</span>
+                            @break
+                        @default
+                            <span class="badge bg-secondary text-white text-uppercase">Por validar</span>
+                    @endswitch
                 </div>
+                
+                <p class="text-muted small mb-3">
+                    <i class="bi bi-calendar-event"></i> {{ $incidencia['fecha'] }} | 
+                    <i class="bi bi-geo-alt"></i> {{ explode('|', $incidencia->ubicacion)[0] }}
+                </p>
 
-                <div class="form-floating col-12 col-md-6 ">
-                    <input id="ubicacion" name="ubicacion" type="text"
-                        placeholder="Ej. Calle Periodista Daniel Saucedo Aranda s/n. E-18071" class="form-control" required>
-                    <label for="ubicacion"> Ubicación: </label>
-                </div>
+                <p class="card-text flex-grow-1 text-secondary">
+                    {{ $incidencia['detalle'] }}
+                </p>
 
-                <div class="form-floating col-12 col-md-6 ">
-                    <input id="fecha" name="fecha" type="date" placeholder="dd/mm/yyyy" class="form-control" required>
-                    <label for="fecha"> Fecha: </label>
-                </div>
-            </div>
-
-            <div class="row mb-3 g-3">
-
-                <div class="form-floating col-12 col-md-6 ">
-                    <textarea id="descripcion" name="descripcion" class="form-control"
-                        placeholder="Descripción de la incidencia..." style="height: 100px" required></textarea>
-                    <label for="descripcion"> Descripción: </label>
-                </div>
-
-                <div class="form-floating col-12 col-md-6 ">
-                    <input id="fotografia" name="fotografia" type="file" placeholder="https://webejemplo.com/imagen.jpg"
-                        class="form-control" accept="image/*" required>
-                    <label for="fotografia"> Fotografía de la incidencia: </label>
-                </div>
-
-                <div class="form-floating col-12 col-md-6 ">
-                    <input id="info_img" name="info_img" type="text" placeholder="Ej. Detalle del cristal roto de la farola"
-                        class="form-control" required>
-                    <label for="info_img" class="ms-2"> Describe brevemente lo que se ve en la foto (Accesibilidad):
-                    </label>
-                </div>
-            </div>
-
-            <div class="row mb-3 g-3"> <!-- terminos y condiciones -->
-                <div class="form-check">
-                    <input class="form-check-input" value="" id="condiciones" name="condiciones" type="checkbox">
-                    <label class="form-check-label" for="condiciones"> Aceptar términos y condiciones </label>
-                </div>
-            </div>
-
-            <div class="col-12 col-md-6">
-                <button type="submit" class="btn btn-primary w-100 w-md-auto">Enviar </button>
+                @if(isset($incidencia['info_img']))
+                    <p class="text-decoration-underline small text-muted mb-3">
+                        {{ $incidencia['info_img'] }}
+                    </p>
+                @endif
             </div>
         </div>
-    </form>
 
+
+    <div class="modal fade" id="imagenAmpliar" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl"> 
+            <div class="modal-content bg-transparent border-0"> 
+                <div class="modal-body p-0 position-relative text-center">
+                    
+                    <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3 fs-4" data-bs-dismiss="modal" aria-label="Close" style="z-index: 1055;"></button>
+                    
+                    <img 
+                        src="{{ asset($incidencia['foto']) }}" 
+                        class="img-fluid rounded shadow" 
+                        alt="{{ $incidencia['info_img'] ?? 'Imagen ampliada' }}"
+                        style="max-height: 90vh; object-fit: contain;"
+                    >
+                    
+                    @if(isset($incidencia['info_img']))
+                        <p class="text-white mt-2 small">{{ $incidencia['info_img'] }}</p>
+                    @endif
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+</div>
 @endsection

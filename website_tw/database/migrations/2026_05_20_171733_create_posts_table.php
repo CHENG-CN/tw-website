@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('estado')->default('Por validar');
             
             // Vamos a permitir que haya incidencias sin fotos?
-            $table->string('foto')->nullable();
+            $table->string('foto');
             $table->string('info_img')->nullable();
 
             $table->timestamps();

@@ -14,7 +14,7 @@
                 <div class="form-floating col-12 col-md-6">
                     <input id="titulo" name="titulo" type="text" placeholder="Ej. Farola rota en la esquina"
                         class="form-control" required>
-                    <label for="titulo" class="ms-2"> Título corto de la incidencia: </label>
+                    <label for="titulo" class="ms-2"> Título: </label>
                 </div>
 
                 <div class="form-floating col-12 col-md-6 ">
@@ -96,10 +96,15 @@
             <div class="form-floating col-12 col-md-6">
                 <input id="titulo" name="titulo" type="text" placeholder="Ej. Farola rota en la esquina"
                     class="form-control" value="{{ old('titulo') }}" required>
-                <label for="titulo" class="ms-2"> Título corto de la incidencia: </label>
+                <label for="titulo" class="ms-2"> Título: </label>
+            </div>
+            
+            <div class="form-floating col-12 col-md-6">
+                <input id="fecha" name="fecha" type="date" placeholder="dd/mm/yyyy" class="form-control" value="{{ old('fecha') }}" required>
+                <label for="fecha" class="ms-2"> Fecha: </label>
             </div>
 
-            <div class="form-floating col-12 col-md-6">
+            <div class="form-floating col-12">
                 <input id="direccion_texto" type="text" placeholder="Ej. Calle Periodista Daniel Saucedo Aranda s/n. E-18071" 
                     class="form-control" value="{{ old('ubicacion') ? explode('|', old('ubicacion'))[0] : '' }}" required>
                 <label for="direccion_texto" class="ms-2"> Ubicación (Calle y número): </label>
@@ -107,28 +112,25 @@
                 <input type="hidden" name="ubicacion" id="ubicacion_coordenadas" value="{{ old('ubicacion') }}">
             </div>
 
-            <div class="form-floating col-12 col-md-6">
-                <input id="fecha" name="fecha" type="date" placeholder="dd/mm/yyyy" class="form-control" value="{{ old('fecha') }}" required>
-                <label for="fecha" class="ms-2"> Fecha: </label>
-            </div>
+            
         </div>
 
         <div class="row mb-3 g-3">
-            <div class="form-floating col-12 col-md-6">
+            <div class="form-floating col-12">
                 <textarea id="descripcion" name="descripcion" class="form-control"
                     placeholder="Descripción de la incidencia..." style="height: 100px" required>{{ old('descripcion') }}</textarea>
                 <label for="descripcion" class="ms-2"> Descripción: </label>
             </div>
 
             <div class="form-floating col-12 col-md-6">
-                <input id="fotografia" name="fotografia" type="file" class="form-control" accept="image/*">
-                <label for="fotografia" class="ms-2"> Archivo de imagen (Opcional): </label>
+                <input id="info_img" name="info_img" type="text" placeholder="Ej. Detalle del cristal roto de la farola"
+                    class="form-control" value="{{ old('info_img') }}">
+                <label for="info_img" class="ms-2"> Descripción foto:</label>
             </div>
 
             <div class="form-floating col-12 col-md-6">
-                <input id="info_img" name="info_img" type="text" placeholder="Ej. Detalle del cristal roto de la farola"
-                    class="form-control" value="{{ old('info_img') }}">
-                <label for="info_img" class="ms-2"> Descripción de lo que se ve en la foto (Accesibilidad): </label>
+                <input id="fotografia" name="fotografia" type="file" class="form-control" accept="image/*">
+                <label for="fotografia" class="ms-2" required> Archivo de imagen </label>
             </div>
         </div>
 

@@ -21,7 +21,7 @@
 </head>
 
 <body>
-    <header class="mb-5 shadow-sm">
+    <header class="mb-4 mb-md-5 shadow-sm">
         {{-- <h1 class="text-center my-3 text-primary-emphasis fw-bold">@yield('titulo_pagina', 'Incidencias Granada')</h1> --}}
         
         <nav class="navbar navbar-expand-lg navbar-custom">
@@ -34,18 +34,19 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class='collapse navbar-collapse' id='navmenu'>
-                    <ul class='navbar-nav me-auto'>
+                <div class='collapse navbar-collapse pt-3 py-md-0' id='navmenu'>
+                    <ul class='navbar-nav w-100 d-flex justify-content-start'>
+
                         @foreach(config('paginas.menu') as $ruta => $nombre)
                             <li class='nav-item'>
-                                <a class="nav-link {{ request()->routeIs($ruta) ? 'active' : '' }}" href="{{ route($ruta) }}"> 
+                                <a class="nav-link {{ request()->routeIs($ruta) ? 'active' : '' }} me-md-2" href="{{ route($ruta) }}"> 
                                     {{ $nombre }} 
                                 </a>
                             </li>
                         @endforeach
                     </ul>
 
-                    <div class="d-flex align-items-center">
+                    <div class="d-flex align-items-center py-1">
                         @auth
                             <span class="navbar-text me-4 text-muted small">
                                 <i class="bi bi-person me-1"></i> Hola, <strong>{{ auth()->user()->name }}</strong>
@@ -65,9 +66,11 @@
     </header>
 
     {{-- min-vh-100 ayuda a que el footer no se suba si hay poco contenido --}}
-    <main class="gh-main-content my-3 container" style="min-height: 65vh;">
+    <main class="gh-main-content my-3 container px-3 px-sm-0" style="min-height: 65vh;">
         @yield('content')
     </main>
+
+
 <footer class="gh-footer py-5 text-center">
     <div class="container">
         <p class="mb-2">&copy; 2026 Grupo 6 TW. Todos los derechos reservados.</p>
