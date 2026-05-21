@@ -19,19 +19,10 @@
             <div class="card-body d-flex flex-column h-100">
                 <div class="d-flex justify-content-between align-items-start mb-2">
                     <h5 class="card-title fw-bold mb-0">{{ $incidencia['titulo'] }}</h5>
-                    @switch(strtolower(($incidencia->estado ?? '')))
-                        @case('pendiente')
-                            <span class="badge bg-warning text-white text-upppercase">Pendiente</span>
-                            @break
-                        @case('en_proceso')
-                            <span class="badge bg-primary text-white text-uppercase">En proceso</span>
-                            @break
-                        @case('solucionado')
-                            <span class="badge bg-success text-white text-uppercase">Solucionado</span>
-                            @break
-                        @default
-                            <span class="badge bg-secondary text-white text-uppercase">Por validar</span>
-                    @endswitch
+
+                    <span class="badge {{ $incidencia->badge_color }} text-upppercase" style="font-size: 10px; font-weight: 700;">
+                        {{ $incidencia->estado_texto }}
+                    </span>
                 </div>
                 
                 <p class="text-muted small mb-3">

@@ -24,7 +24,7 @@
                 </div>
             @empty
 
-                <p>No hay incidencias registradas.</p>
+                <p>No hay incidencias.</p>
             @endforelse
         </div>
     </div>
