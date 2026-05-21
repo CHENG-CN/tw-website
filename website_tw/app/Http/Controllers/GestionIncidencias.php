@@ -27,11 +27,18 @@ class GestionIncidencias extends Controller
         return view('estado_incidencia', ['incidencia' => $incidenciaEncontrada]);
     }
 
-    public function listarTodasIncidencias()
+    public function listarTodasIncidencias(Request $request)
     {
+
         $todasIncidencias = Incidencia::whereIn('estado', ['pendiente', 'en_proceso', 'solucionado'])->get();
         
-        return view('dashboard_incidencias', compact('todasIncidencias'));
+        if ($request->has('estado') && $request->estado != "") {
+            $incidencias_filtradas=$todasIncidencias->where('estado', $request->estado);
+        }
+        else{
+            $incidencias_filtradas=$todasIncidencias;
+        } 
+        return view('dashboard_incidencias', compact('incidencias_filtradas'));
     }
     
 
