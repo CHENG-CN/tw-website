@@ -2,7 +2,6 @@
 @section('content')
 
     @auth 
-
     <div class="alert alert-danger rounded-4">
             Ya está registrado
     </div>
@@ -15,47 +14,49 @@
         </div>
 
         <div class="row mb-3 g-3"> 
-
-            <div class="form-floating col-12 col-md-6 ">
-                <input id="name" name="name" type="string"
+            <div class="form-floating col-12">
+                <input id="name" name="name" type="text"
                         placeholder="Ej. José Pérez" 
                         class="form-control" required>
-                <label for="nombre"> Nombre: </label>
-            </div> 
-        </div>
-
-        <div class="row mb-3 g-3"> 
-            <div class="form-floating col-12 col-md-6 ">
-                <input id="password" name="password" type="string"
-                        placeholder="tw_1234" 
-                        class="form-control" required>
-                <label for="password"> Contraseña: </label>
+                <label for="name" class="ms-2"> <i class="bi bi-person-fill me-1"></i> Nombre: </label>
             </div> 
         </div>
 
         <div class="row mb-3 g-3">
-            <div class="form-floating col-12 col-md-6 ">
+            <div class="form-floating col-12">
                 <input id="email" name="email" type="email" 
                     placeholder="tucorreo@dominio.es" 
-                    pattern="[a-z0-9.-]+@[a-z0-9.-]+"
                     class="form-control" required>
-                <label for="email"> Correo: </label>
+                <label for="email" class="ms-2"> <i class="bi bi-envelope-fill me-1"></i> Correo: </label>
             </div>
         </div>
 
-        <div class="row mb-3 g-3"> <!-- terminos y condiciones -->
-            <div class="form-check">
-                <input class="form-check-input" value="" id="condiciones" name="condiciones" type="checkbox">
+        <div class="row mb-3 g-3"> 
+            <div class="form-floating col-12">
+                <input id="password" name="password" type="password"
+                        placeholder="tw_1234" 
+                        class="form-control" required>
+                <label for="password" class="ms-2"> <i class="bi bi-lock-fill me-1"></i> Contraseña: </label>
+            </div> 
+        </div>
+
+
+        <div class="row mb-3 g-3"> 
+            <div class="form-check ms-3">
+                <input class="form-check-input" value="1" id="condiciones" name="condiciones" type="checkbox" required>
                 <label class="form-check-label" for="condiciones"> Aceptar términos y condiciones </label>
             </div>
         </div>
 
-        <div class="col-12 col-md-auto">
-            <button type="submit" class="btn btn-primary w-100 w-md-auto">Enviar </button>
+        <div class="row mt-4">
+            <div class="col-12 col-md-auto">
+                <button type="submit" class="btn btn-primary d-block w-100 px-4">
+                    Enviar
+                </button>
+            </div>
         </div>
     </div>
     </form>
-
     @endauth
 
 @endsection

@@ -34,25 +34,33 @@
                                 </td>
                                 <td>
                                     <i class="bi bi-geo-alt text-danger me-1"></i>
-                                    {{ $incidencia['ubicacion'] }}
+                                    <p><strong>Ubicación:</strong> {{ explode('|', $incidencia->ubicacion)[0] }}</p>
                                 </td>
                                 <td>{{ $incidencia['fecha'] }}</td>
                                 <td>
-                                    <span class="badge bg-secondary text-white">{{ $incidencia['reportador'] }}</span>
+                                    <span class="badge bg-secondary text-white">
+                                        {{ $incidencia->user->name }}
+                                    </span>
                                 </td>
                                 <td class="text-end pe-4">
-                                    <div class="btn-group">
-                                        <a href="{{ route('incidencias.detalle', $incidencia['id'])}}" class="btn btn-sm">
-                                            <i class="bi bi-eye"></i>
-                                        </a>
-                                        <button class="btn btn-success btn-sm ms-2 rounded-pill px-3">
+                                <div class="btn-group align-items-center">
+                                    <a href="{{ route('incidencias.detalle', $incidencia->id) }}" class="btn btn-sm">
+                                        <i class="bi bi-eye"></i>
+                                    </a>
+
+                                    <form action="{{ route('incidencias.validar', $incidencia->id) }}" method="POST" class="d-inline ms-2">
+                                        <button type="submit" class="btn btn-success btn-sm rounded-pill px-3">
                                             Validar
                                         </button>
-                                        <button class="btn btn-danger btn-sm ms-2 rounded-pill px-3">
+                                    </form>
+
+                                    <form action="{{ route('incidencias.rechazar', $incidencia->id) }}" method="POST" class="d-inline ms-2">
+                                        <button type="submit" class="btn btn-danger btn-sm rounded-pill px-3">
                                             Rechazar
                                         </button>
-                                    </div>
-                                </td>
+                                    </form>
+                                </div>
+                            </td>
                             </tr>
                         @empty
                             <tr>

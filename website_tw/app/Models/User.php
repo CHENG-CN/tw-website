@@ -29,4 +29,9 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function incidencias()
+    {
+        return $this->hasMany(\App\Models\Incidencia::class, 'user_id');
+    }
 }

@@ -63,8 +63,12 @@
             </div>
         </div>
 
-        <div class="col-12 col-md-auto">
-            <button type="submit" class="btn btn-primary w-100 w-md-auto">Enviar </button>
+        <div class="row mt-4">
+            <div class="col-12 col-md-auto">
+                <button type="submit" class="btn btn-primary d-block w-100 px-4">
+                    Enviar
+                </button>
+            </div>
         </div>
     </div>
     </form>

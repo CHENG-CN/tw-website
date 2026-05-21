@@ -14,38 +14,47 @@
                         {{-- Cabecera --}}
                         <div class="d-flex justify-content-between align-items-end mb-2">
                             <h5 class="mb-0">
-                                {{ $incidencia['titulo'] }}
+                                {{ $incidencia->titulo }}
                             </h5>
 
-                            <span class="badge bg-info text-dark">
-                                {{ $incidencia['estado'] ?? 'Por validar' }}
-                            </span>
+                            @switch(strtolower(($incidencia->estado ?? '')))
+                                @case('pendiente')
+                                    <span class="badge bg-warning text-white text-upppercase">Pendiente</span>
+                                    @break
+                                @case('en_proceso')
+                                    <span class="badge bg-primary text-white text-uppercase">En proceso</span>
+                                    @break
+                                @case('solucionado')
+                                    <span class="badge bg-success text-white text-uppercase">Solucionado</span>
+                                    @break
+                                @default
+                                    <span calss="badge bg-primary text-white text-uppercase">Por validar</span>
+                            @endswitch
                         </div>
 
                         {{-- Info --}}
                         <p class="mb-1">
                             <strong>Fecha:</strong>
-                            {{ $incidencia['fecha'] }}
+                            {{ $incidencia->fecha }}
                         </p>
 
                         <p class="mb-2">
-                            <strong>Ubicación:</strong>
-                            {{ $incidencia['ubicacion'] }}
+                            <p><strong>Ubicación:</strong> {{ explode('|', $incidencia->ubicacion)[0] }}</p>
                         </p>
 
                         {{-- Imagen --}}
                         <div class="text-center mb-2">
-                            <img src="{{ $incidencia['foto'] ?? 'https://via.placeholder.com/400x200' }}"
+                            <img src="{{ $incidencia->foto ?? 'https://via.placeholder.com/400x200' }}"
                                 class="img-fluid rounded" style="max-height: 200px; object-fit: cover; width: 100%;">
                         </div>
 
                         {{-- Descripción --}}
                         <p class="small">
-                            {{ Str::limit($incidencia['detalle'], 100) }}
+                            {{ Str::limit($incidencia->detalle, 100) }}
                         </p>
 
                         {{-- Botón--}}
-                        <a href="{{ route('incidencias.detalle', $incidencia['id']) }}" class="btn btn-outline-primary w-100">
+                        <a href="{{ route('incidencias.detalle', $incidencia->id) }}" class="btn btn-outline-primary w-100">
                             Ver más </a>
 
                     </article>

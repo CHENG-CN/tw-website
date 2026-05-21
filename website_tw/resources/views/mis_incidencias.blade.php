@@ -10,14 +10,9 @@
                 <article class="border border-dark bg-body-tertiary p-3 rounded h-100 shadow-sm">
                     <div class="d-flex justify-content-between align-items-start mb-2">
 
-                        <h5 class="mb-0">
-                            {{ $incidencia['titulo'] }}
-                        </h5>
-
-                        <span class="badge bg-info text-dark">
-                            {{ $incidencia['estado'] ?? "Por validar" }}
+                       <span class="badge {{ $incidencia->badge_color }} text-uppercase px-2 py-1" style="font-size: 10px; font-weight: 700;">
+                            {{ $incidencia->estado_texto }}
                         </span>
-
                     </div>
 
                     {{-- Fecha --}}
@@ -27,7 +22,7 @@
 
                     {{-- Ubicación --}}
                     <p class="mb-2">
-                        📍 {{ $incidencia['ubicacion'] }}
+                        📍{{ explode('|', $incidencia->ubicacion)[0] }}</p>
                     </p>
 
                     {{-- Descripción --}}
@@ -48,14 +43,17 @@
                     {{-- Acciones --}}
                     <div class="d-flex gap-2 mt-3">
 
-                        <a href="{{ route('incidencias.detalle', $incidencia['id']) }}"
-                           class="btn btn-outline-primary btn-sm w-100">
+                        <a href="{{ route('incidencias.detalle', $incidencia->id) }}"
+                        class="btn btn-outline-primary btn-sm w-100">
                             Ver
                         </a>
 
-                        <button class="btn btn-danger btn-sm w-100">
-                            Eliminar
-                        </button>
+                        <form action="{{ route('incidencias.eliminar', $incidencia->id) }}" method="POST" class="w-100" onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta incidencia?');">
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm w-100">
+                                Eliminar
+                            </button>
+                        </form>
 
                     </div>
 

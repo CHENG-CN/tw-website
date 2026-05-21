@@ -1,43 +1,66 @@
 @extends('layouts.default')
-@section('titulo_pagina', "Estado incidencia: ".$incidencia['titulo'])
 @section('content')
 
-<div class="card shadow-sm border-0 mb-4 overflow-hidden">
-    <div class="row g-0">
-        <div class="col-md-4">
-            <img 
-                src="{{ asset($incidencia['foto']) }}" 
-                class="img-fluid h-100 w-100" 
-                alt="{{ $incidencia['info_img'] ?? 'Imagen de incidencia' }}"
-                style="object-fit: cover; min-height: 200px;"
-            >
-        </div>
+    <form method="POST" action="{{ route('incidencias.post') }}" enctype="multipart/form-data">
+        <div class="container">
 
-        <div class="col-md-8">
-            <div class="card-body d-flex flex-column h-100">
-                <div class="d-flex justify-content-between align-items-start mb-2">
-                    <h5 class="card-title fw-bold mb-0">{{ $incidencia['titulo'] }}</h5>
-                    <span class="badge rounded-pill bg-info text-dark">
-                        {{ ucfirst($incidencia['estado'] ?? "Por validar")}}
-                    </span>
+            <div class="row mb-3">
+                <h2> Reportar una incidencia </h2>
+            </div>
+
+            <div class="row mb-3 g-3">
+
+                <div class="form-floating col-12 col-md-6">
+                    <input id="titulo" name="titulo" type="text" placeholder="Ej. Farola rota en la esquina"
+                        class="form-control" required>
+                    <label for="titulo" class="ms-2"> Título corto de la incidencia: </label>
                 </div>
-                
-                <p class="text-muted small mb-3">
-                    <i class="bi bi-calendar-event"></i> {{ $incidencia['fecha'] }} | 
-                    <i class="bi bi-geo-alt"></i> {{ $incidencia['ubicacion'] }}
-                </p>
 
-                <p class="card-text flex-grow-1 text-secondary">
-                    {{ $incidencia['detalle'] }}
-                </p>
+                <div class="form-floating col-12 col-md-6 ">
+                    <input id="ubicacion" name="ubicacion" type="text"
+                        placeholder="Ej. Calle Periodista Daniel Saucedo Aranda s/n. E-18071" class="form-control" required>
+                    <label for="ubicacion"> Ubicación: </label>
+                </div>
 
-                @if(isset($incidencia['info_img']))
-                    <p class="text-decoration-underline small text-muted mb-3">
-                        {{ $incidencia['info_img'] }}
-                    </p>
-                @endif
+                <div class="form-floating col-12 col-md-6 ">
+                    <input id="fecha" name="fecha" type="date" placeholder="dd/mm/yyyy" class="form-control" required>
+                    <label for="fecha"> Fecha: </label>
+                </div>
+            </div>
+
+            <div class="row mb-3 g-3">
+
+                <div class="form-floating col-12 col-md-6 ">
+                    <textarea id="descripcion" name="descripcion" class="form-control"
+                        placeholder="Descripción de la incidencia..." style="height: 100px" required></textarea>
+                    <label for="descripcion"> Descripción: </label>
+                </div>
+
+                <div class="form-floating col-12 col-md-6 ">
+                    <input id="fotografia" name="fotografia" type="file" placeholder="https://webejemplo.com/imagen.jpg"
+                        class="form-control" accept="image/*" required>
+                    <label for="fotografia"> Fotografía de la incidencia: </label>
+                </div>
+
+                <div class="form-floating col-12 col-md-6 ">
+                    <input id="info_img" name="info_img" type="text" placeholder="Ej. Detalle del cristal roto de la farola"
+                        class="form-control" required>
+                    <label for="info_img" class="ms-2"> Describe brevemente lo que se ve en la foto (Accesibilidad):
+                    </label>
+                </div>
+            </div>
+
+            <div class="row mb-3 g-3"> <!-- terminos y condiciones -->
+                <div class="form-check">
+                    <input class="form-check-input" value="" id="condiciones" name="condiciones" type="checkbox">
+                    <label class="form-check-label" for="condiciones"> Aceptar términos y condiciones </label>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6">
+                <button type="submit" class="btn btn-primary w-100 w-md-auto">Enviar </button>
             </div>
         </div>
-    </div>
-</div>
+    </form>
+
 @endsection
