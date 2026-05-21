@@ -36,11 +36,11 @@
                                 </td>
                                 <td>
                                     <i class="bi bi-geo-alt text-danger me-1"></i>
-                                    {{ $incidencia->ubicacion }}
+                                    {{ explode('|', $incidencia->ubicacion)[0] }}</p>
                                 </td>
                                 <td>{{ $incidencia->fecha }}</td>
                                 <td>
-                                    <span class="badge bg-light text-dark border">{{ $incidencia->user_id }}</span>
+                                    <span class="badge bg-light text-dark border">{{ $incidencia->user->name }}</span>
                                 </td>
                                 <td class="text-end pe-4">
                                     <div class="d-flex align-items-center justify-content-end gap-2">

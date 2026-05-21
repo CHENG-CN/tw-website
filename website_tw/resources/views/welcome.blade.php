@@ -4,7 +4,6 @@
 <div class="container-fluid">
     
     <section class="text-center py-5 mb-5 rounded-4 shadow-sm border border-primary-subtle hero-granada">
-        
         <div class="hero-overlay"></div>
 
         <div class="row justify-content-center hero-content py-4">
@@ -32,53 +31,68 @@
         </div>
     </section>
 
-        <div class="row mb-5 g-4 text-center">
+    <div class="row mb-5 g-4 text-center">
         <div class="col-md-4">
-            <div class="p-4 bg-white rounded-3 shadow-sm border-bottom border-primary border-4">
-                <h2 class="fw-bold">{{ $resueltas }}</h2>
-                <span class="text-muted text-uppercase small fw-semibold">Incidencias Resueltas</span>
+            <div class="p-4 bg-white rounded-3 shadow-sm border-bottom border-warning border-4">
+                <h2 class="fw-bold">{{ $total }}</h2>
+                <span class="text-muted text-uppercase small fw-semibold">Total Reportadas</span>
             </div>
         </div>
 
         <div class="col-md-4">
-            <div class="p-4 bg-white rounded-3 shadow-sm border-bottom border-warning border-4">
+            <div class="p-4 bg-white rounded-3 shadow-sm border-bottom border-primary border-4">
                 <h2 class="fw-bold">{{ $proceso }}</h2>
                 <span class="text-muted text-uppercase small fw-semibold">En Proceso</span>
             </div>
         </div>
 
         <div class="col-md-4">
-            <div class="p-4 bg-white rounded-3 shadow-sm border-bottom border-info border-4">
-                <h2 class="fw-bold">{{ $total }}</h2>
-                <span class="text-muted text-uppercase small fw-semibold">Total Reportadas</span>
+            <div class="p-4 bg-white rounded-3 shadow-sm border-bottom border-success border-4">
+                <h2 class="fw-bold">{{ $resueltas }}</h2>
+                <span class="text-muted text-uppercase small fw-semibold">Incidencias Resueltas</span>
             </div>
         </div>
     </div>
 
-    <div class="row align-items-center py-4">
-        <div class="col-md-6">
+    <div class="row mt-5 align-items-stretch g-4">
+        <div class="col-md-5 d-flex flex-column justify-content-center">
             <h3 class="fw-bold mb-4">¿Cómo funciona el servicio?</h3>
-            <ul class="list-unstyled">
-                <li class="mb-3 d-flex align-items-start">
-                    <i class="bi bi-1-circle-fill text-primary fs-4 me-3"></i>
+            
+            <ul class="list-unstyled mb-4">
+                <li class="mb-4 d-flex align-items-start">
+                    <i class="bi bi-1-circle-fill text-primary fs-4 me-3 mt-1"></i>
                     <div>
-                        <strong>Identifica el problema:</strong> Localiza la incidencia y toma una fotografía descriptiva.
+                        <h6 class="fw-bold mb-1">Identifica el problema</h6>
+                        <p class="text-muted small mb-0">Localiza la incidencia en la vía pública y toma una fotografía descriptiva.</p>
                     </div>
                 </li>
-                <li class="mb-3 d-flex align-items-start">
-                    <i class="bi bi-2-circle-fill text-primary fs-4 me-3"></i>
+                <li class="mb-4 d-flex align-items-start">
+                    <i class="bi bi-2-circle-fill text-primary fs-4 me-3 mt-1"></i>
                     <div>
-                        <strong>Envía el reporte:</strong> Usa nuestro formulario para enviarnos la ubicación y el detalle técnico.
+                        <h6 class="fw-bold mb-1">Envía el reporte</h6>
+                        <p class="text-muted small mb-0">Usa nuestro formulario para enviarnos la ubicación y el detalle técnico.</p>
                     </div>
                 </li>
-                <li class="mb-3 d-flex align-items-start">
-                    <i class="bi bi-3-circle-fill text-primary fs-4 me-3"></i>
+                <li class="mb-0 d-flex align-items-start">
+                    <i class="bi bi-3-circle-fill text-primary fs-4 me-3 mt-1"></i>
                     <div>
-                        <strong>Seguimiento:</strong> Recibirás actualizaciones sobre el estado de la reparación en tiempo real.
+                        <h6 class="fw-bold mb-1">Seguimiento en tiempo real</h6>
+                        <p class="text-muted small mb-0">Consulta este mapa interactivo para ver el estado de validación y reparación.</p>
                     </div>
                 </li>
             </ul>
+
+        </div>
+
+        <div class="col-md-7">
+            <div id="mapa-incidencias" class="rounded-4 shadow-sm border h-100"></div>
         </div>
     </div>
+    
 </div>
 @endsection
+
+<script>
+    window.datosIncidencias = @json($incidencias);
+</script>
+<script src="{{ asset('js/mapa.js') }}"></script>

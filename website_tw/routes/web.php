@@ -4,17 +4,20 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\GestionIncidencias;
 use App\Http\Controllers\ContactoController;
+use App\Models\Incidencia;
 
 use Illuminate\Http\Request;
 
-
+//modificado
 Route::get('/', function () {
-    $todas = collect(config('incidencias_reportadas'))->collapse();
+    $incidencias = Incidencia::all();
+    $enProcesoYPendientes = $incidencias->whereIn('estado', ['pendiente', 'en_proceso'])->count();
 
     return view('welcome', [
-        'resueltas' => $todas->where('estado', 'Solucionado')->count(),
-        'proceso'   => $todas->whereIn('estado', ['Pendiente','En proceso'])->count(),
-        'total'     => $todas->count()
+        'resueltas'   => $incidencias->where('estado', 'solucionado')->count(),
+        'proceso'     => $enProcesoYPendientes, 
+        'total'       => $incidencias->count(),
+        'incidencias' => $incidencias
     ]);
 })->name('home');
 

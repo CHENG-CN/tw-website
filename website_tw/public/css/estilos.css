@@ -109,3 +109,8 @@
     letter-spacing: 0.6px;               /* Un extra de separación para que quede premium */
     font-weight: 700 !important;          /* Consistencia en el grosor de la letra */
     }
+    /* Altura del mapa interactivo */
+    #mapa-incidencias {
+        min-height: 420px;
+        width: 100%;
+    }

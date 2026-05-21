@@ -20,14 +20,13 @@
         </div>
 
         <div class="form-floating col-12 col-md-6 ">
-            <input id="password" name="password" type="text"
+            <input id="password" name="password" type="password"
                     placeholder="a_password"
                     pattern="[a-z0-9.-]+@[a-z0-9.-]+" 
                     class="form-control" required>
             <label for="password"> Contraseña: </label>
         </div> 
     </div>
-
 
     <div class="row mb-3 g-3"> <!-- terminos y condiciones -->
         <div class="form-check">

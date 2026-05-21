@@ -39,8 +39,7 @@
                         </p>
 
                         <p class="mb-2">
-                            <strong>Ubicación:</strong>
-                            {{ $incidencia->ubicacion }}
+                            <p><strong>Ubicación:</strong> {{ explode('|', $incidencia->ubicacion)[0] }}</p>
                         </p>
 
                         {{-- Imagen --}}

@@ -10,14 +10,9 @@
                 <article class="border border-dark bg-body-tertiary p-3 rounded h-100 shadow-sm">
                     <div class="d-flex justify-content-between align-items-start mb-2">
 
-                        <h5 class="mb-0">
-                            {{ $incidencia['titulo'] }}
-                        </h5>
-
-                        <span class="badge bg-info text-dark">
-                            {{ ucfirst(str_replace('_', ' ', $incidencia['estado'] ?? "Por validar")) }}
+                       <span class="badge {{ $incidencia->badge_color }} text-uppercase px-2 py-1" style="font-size: 10px; font-weight: 700;">
+                            {{ $incidencia->estado_texto }}
                         </span>
-
                     </div>
 
                     {{-- Fecha --}}
@@ -27,7 +22,7 @@
 
                     {{-- Ubicación --}}
                     <p class="mb-2">
-                        📍 {{ $incidencia['ubicacion'] }}
+                        📍{{ explode('|', $incidencia->ubicacion)[0] }}</p>
                     </p>
 
                     {{-- Descripción --}}
