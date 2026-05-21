@@ -14,8 +14,12 @@ class Incidencia extends Model
         'user_id',
         'detalle',
         'ubicacion',
-        'estado',  // solucionado, sin_validar, en_proceso, pendiente
+        'estado',  // solucionado, sin_validar, en_proceso, pendiente, rechazado
         'foto',
         'info_img',
     ];
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

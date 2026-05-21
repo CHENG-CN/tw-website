@@ -42,8 +42,20 @@
     </div>
     @endif
 
-    <div class="col-12 col-md-auto">
-        <button type="submit" class="btn btn-primary w-100 w-md-auto">Enviar </button>
+    <div class="row mt-4">
+            <div class="col-12 col-md-auto">
+                <button type="submit" class="btn btn-primary d-block w-100 px-4">
+                    Enviar
+                </button>
+            </div>
+        </div>
+    <div class="mt-3 pt-1">
+        <span class="text-muted small">
+            ¿No estás registrado? 
+            <a href="{{ route('formulario_registro') }}" class="text-primary fw-bold text-decoration-none ms-1">
+                Registrarse
+            </a>
+        </span>
     </div>
 </div>
 </form>

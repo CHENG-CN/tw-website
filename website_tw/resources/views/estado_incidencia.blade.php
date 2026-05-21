@@ -18,7 +18,7 @@
                 <div class="d-flex justify-content-between align-items-start mb-2">
                     <h5 class="card-title fw-bold mb-0">{{ $incidencia['titulo'] }}</h5>
                     <span class="badge rounded-pill bg-info text-dark">
-                        {{ ucfirst($incidencia['estado'] ?? "Por validar")}}
+                        {{ ucfirst(str_replace('_', ' ', $incidencia['estado'] ?? "Por validar")) }}
                     </span>
                 </div>
                 

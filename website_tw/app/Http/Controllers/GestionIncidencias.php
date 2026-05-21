@@ -22,58 +22,21 @@ class GestionIncidencias extends Controller
 
     public function estadoIncidencia(Request $request, int $id)
     {
-    /*    
-    // Cargamos el archivo de configuración
-        $usuariosConIncidencias = config('incidencias_reportadas');
-        $incidenciaEncontrada = null;
-
-        // Buscamos en cada usuario hasta encontrar el ID
-        foreach ($usuariosConIncidencias as $usuario => $incidencias) {
-            foreach ($incidencias as $incidencia) {
-                if ($incidencia['id'] == $id) {
-                    $incidenciaEncontrada = $incidencia;
-                    break 2; // Rompe los dos bucles foreach al encontrarlo
-                }
-            }
-        }
-
-        // 3. Si no existe, lanzamos un error 404
-        if (!$incidenciaEncontrada) {
-            abort(404, 'Incidencia no existe');
-        }
-    */
         $incidenciaEncontrada = Incidencia::findOrFail($id);
 
         return view('estado_incidencia', ['incidencia' => $incidenciaEncontrada]);
     }
 
-    public function listarTodasIncidencias(){
-
-        // Usar directamente el de validar
-        /*
-        $todas = collect(config('incidencias_reportadas'))->collapse();
-
-        $validadas = $todas->filter(function ($i) {
-            return isset($i['estado']) && !empty(trim($i['estado']));
-        });
-        
-        $todasIncidencias = $validadas;
-        */
-
-        $todasIncidencias = Incidencia::where('estado', '!=', 'sin_validar')->get();
+    public function listarTodasIncidencias()
+    {
+        $todasIncidencias = Incidencia::whereIn('estado', ['pendiente', 'en_proceso', 'solucionado'])->get();
         
         return view('dashboard_incidencias', compact('todasIncidencias'));
     }
+    
 
     public function listarIncidenciasValidadas(Request $request)
     {
-        /*
-        $todas = collect(config('incidencias_reportadas'))->collapse();
-
-        $validadas = $todas->filter(function ($i) {
-            return isset($i['estado']) && !empty(trim($i['estado']));
-        });
-        */
 
         $validadas = Incidencia::where('estado', '!=', 'sin_validar')->get();
 
@@ -82,15 +45,6 @@ class GestionIncidencias extends Controller
 
     public function listarIncidenciasPorValidar(Request $request)
     {
-        /*
-        $todas = collect(config('incidencias_reportadas'))->collapse();
-
-        $nuevas = $todas->filter(function ($i) {
-            // Solo las que NO tienen la clave o están vacías
-            return !isset($i['estado']) || empty(trim($i['estado']));
-        });
-        */
-        
         $nuevas = Incidencia::where('estado', 'sin_validar')->get();
 
         return view('validar_incidencias', ['incidenciasPendientes' => $nuevas]);
@@ -136,6 +90,35 @@ class GestionIncidencias extends Controller
         $incidencia->save();
 
         return redirect()->route('estado_incidencias')->with('success', 'Estado de la incidencia actualizado correctamente');
+    }
+
+
+    public function validarIncidencia(Request $request, int $id)
+    {
+        $incidencia = Incidencia::findOrFail($id);
+        $incidencia->estado = 'pendiente';
+        $incidencia->save();
+
+        return redirect()->back()->with('success', 'Incidencia validada con éxito.');
+    }
+    //rechaza incidencias que esten sin validar
+    public function rechazarIncidencia(Request $request, int $id)
+    {
+        $incidencia = Incidencia::findOrFail($id);
+        $incidencia->estado = 'rechazada';
+        $incidencia->save();
+
+        return redirect()->back()->with('success', 'Incidencia rechazada correctamente.');
+    }
+    //elimina incidencias de 'Mis incidencias' del perfil personal
+    public function eliminarIncidencia(int $id)
+    {
+        $incidencia = Incidencia::findOrFail($id);
+        if ($incidencia->user_id !== auth()->id()) {
+            abort(403, 'No tienes permiso para borrar esta incidencia.');
+        }
+        $incidencia->delete();
+        return redirect()->back()->with('success', 'Incidencia eliminada correctamente.');
     }
     
 }

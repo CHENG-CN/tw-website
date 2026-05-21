@@ -61,10 +61,22 @@
             </div>
 
         @else
-            <div class="alert alert-danger rounded-4">
-                No hay ninguna sesión activa.
+            <div class="alert alert-danger rounded-4 mb-4">
+                <i class="bi bi-exclamation-triangle-fill me-2"></i> No hay ninguna sesión activa.
             </div>
-            <a href="{{ route('login') }}" class="btn btn-primary rounded-pill px-4">Ir al Login</a>
+            
+            <div class="d-flex flex-column flex-sm-row align-items-center gap-3 mt-2">
+                <a href="{{ route('login') }}" class="btn btn-primary rounded-pill px-4 shadow-sm">
+                    Ir al Login
+                </a>
+                
+                <span class="text-muted small align-middle">
+                    ¿No estás registrado? 
+                    <a href="{{ route('formulario_registro') }}" class="text-primary fw-bold text-decoration-none ms-1">
+                        Registrarse
+                    </a>
+                </span>
+            </div>
         @endauth
     </div>
 </div>

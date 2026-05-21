@@ -15,7 +15,7 @@
                         </h5>
 
                         <span class="badge bg-info text-dark">
-                            {{ $incidencia['estado'] ?? "Por validar" }}
+                            {{ ucfirst(str_replace('_', ' ', $incidencia['estado'] ?? "Por validar")) }}
                         </span>
 
                     </div>
@@ -48,14 +48,17 @@
                     {{-- Acciones --}}
                     <div class="d-flex gap-2 mt-3">
 
-                        <a href="{{ route('incidencias.detalle', $incidencia['id']) }}"
-                           class="btn btn-outline-primary btn-sm w-100">
+                        <a href="{{ route('incidencias.detalle', $incidencia->id) }}"
+                        class="btn btn-outline-primary btn-sm w-100">
                             Ver
                         </a>
 
-                        <button class="btn btn-danger btn-sm w-100">
-                            Eliminar
-                        </button>
+                        <form action="{{ route('incidencias.eliminar', $incidencia->id) }}" method="POST" class="w-100" onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta incidencia?');">
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm w-100">
+                                Eliminar
+                            </button>
+                        </form>
 
                     </div>
 

@@ -76,3 +76,7 @@ Route::prefix('perfil')->group(function () {
 });
 
 Route::patch('/perfil/estado_incidencias/{id}', [GestionIncidencias::class, 'actualizarEstado'])->name('incidencias.actualizar_estado');
+
+Route::post('/incidencias/validar/{id}', [GestionIncidencias::class, 'validarIncidencia'])->name('incidencias.validar');
+Route::post('/incidencias/rechazar/{id}', [GestionIncidencias::class, 'rechazarIncidencia'])->name('incidencias.rechazar');
+Route::delete('/incidencias/eliminar/{id}', [App\Http\Controllers\GestionIncidencias::class, 'eliminarIncidencia'])->name('incidencias.eliminar');
